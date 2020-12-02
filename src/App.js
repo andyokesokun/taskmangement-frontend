@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import {HashRouter, Route, Switch} from 'react-router-dom'
+import  Login  from './Components/Login' 
+import React from 'react'
+import  Dashboard from './Components/Dashboard'
+import  NotFound from './Components/NotFound'
+import  ProtectedRoute from './Components/ProtectedRoute'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const  App = ()=>{
+    return (
+            <HashRouter>
+                <Switch>
+                    <ProtectedRoute exact path="/"  component={Dashboard} />
+                    <ProtectedRoute  path="/dashboard"  component={Dashboard} />
+                    <Login path="/login" />
+                    <Route path="*"  component={NotFound} />
+
+                </Switch>
+                
+          </HashRouter>
+       )
 }
 
 export default App;
