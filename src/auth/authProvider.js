@@ -1,33 +1,27 @@
 // in src/authProvider.js
-export default {
+import client from '../utils/makeRequest'
+
+const authMethods={
     // called when the user attempts to log in
     login: async ({ username,password}) => {
-        
-        const request = new Request('https://localhost:44346/api/Auth/login', {
-            method: 'POST',
-            body: JSON.stringify({ username, password }),
-            headers: new Headers({ 'Content-Type': 'application/json' }),
-        });
-        
-       return fetch(request)
-        
-       .then( response => {
-            if (response.status < 200 || response.status >= 300) {
-                throw new Error(response.statusText);
+    
+        const data ={username, password}
+    
+        try{      
+            const result= await client({path:"Auth/login", method:'POST', data});
+            if(result.status === "success"){
+                localStorage.setItem("token", result.token);
+                localStorage.setItem("access", result.access);
+                return Promise.resolve();
             }
-            return response.json()
-        }).then(result =>{
-             if(result.status === "success"){
-                 localStorage.setItem("token", result.token);
-                 localStorage.setItem("access", result.access);
-                 return Promise.resolve();
-             }
-             console.log(result);
-             return Promise.reject(result);
-           
-        })
+            console.log(result);
+            return Promise.reject(result);
 
-       
+        }catch(err){
+            throw new Error(err);
+        }
+      
+      
        
     },
     // called when the user clicks on the logout button
@@ -54,3 +48,5 @@ export default {
     getPermissions: () => Promise.resolve(),
     
 };
+
+export default authMethods;

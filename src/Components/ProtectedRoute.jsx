@@ -1,17 +1,17 @@
 import  React from "react"
-import {Route, Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {useLogined} from '../hooks'
 
 
 
 function ProtectedRoute(props){
       
-    const isAuthenticated=useLogined();
+    const {isLogined}=useLogined();
     const Component =props.component;     
     
-     return isAuthenticated ? 
+     return (isLogined ? 
                     (<Component />) 
-                    : (<Redirect  to="/login"/>)       
+                    : (<Redirect  to="/login"/>) )    
       
       
 }

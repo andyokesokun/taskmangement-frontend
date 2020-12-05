@@ -1,4 +1,4 @@
-import {ADD, REMOVE,UPDATE,SET}  from './actionTypes';
+import {ADD, REMOVE,UPDATE}  from './actionTypes';
 
 export const AddTask =(task)=>({type: ADD, payload: task });
 export const RemoveTask =(taskId)=>({ type: REMOVE, id:taskId});

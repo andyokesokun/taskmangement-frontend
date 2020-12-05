@@ -9,7 +9,7 @@ import authProvider  from  '../../auth/authProvider'
 
  function Login() { 
     
-    const isAuthenticated=useLogined();
+    const {isLogined, setIsLogined}=useLogined();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [hasError, setHasError] = useState(false);
@@ -17,7 +17,9 @@ import authProvider  from  '../../auth/authProvider'
 
    const handleClick = async () => {
        try{
-            await  authProvider.login({username, password })
+            await  authProvider.login({username, password} )
+            setHasError(false)
+            setIsLogined(true);
 
        }catch(err){
              setHasError(true)
@@ -25,16 +27,17 @@ import authProvider  from  '../../auth/authProvider'
        
    } 
 
-    return (isAuthenticated ? 
+    return (isLogined ? 
                 (<Redirect to="/dashboard"/>) : 
                 (<div className="login-holder">
                 <form className="fancy-form">            
                 <Card>
-                    {hasError ? 
-                         <div class="error"> Invaild Username  And Passeord </div> 
-                         :
-                         ""
-                    }
+                   
+                    {hasError ?  
+                         <div className="error centered"> Invaild Username  And Password </div> 
+                          :
+                         ""}
+                    
                     <CardContent>
                         <div className="centered">
                             <Lock className="login-icon"/>
@@ -59,8 +62,12 @@ import authProvider  from  '../../auth/authProvider'
                             />
                         </div>
         
-                        <button className="btn" onClick={handleClick} >Login</button>
-        
+                        <div className="loginBtn">
+                            <button className="btn" onClick={handleClick} >Login           
+                            </button>
+                           
+                        </div>
+                        
                     </CardContent>
                 </Card>
             </form>

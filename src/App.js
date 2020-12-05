@@ -1,6 +1,7 @@
-import './App.css';
+import  './sass/_utils.sass'
 import {HashRouter, Route, Switch} from 'react-router-dom'
 import  Login  from './Components/Login' 
+import  Logout  from './Components/Logout' 
 import React from 'react'
 import  Dashboard from './Components/Dashboard'
 import  NotFound from './Components/NotFound'
@@ -14,6 +15,7 @@ const  App = ()=>{
                     <ProtectedRoute exact path="/"  component={Dashboard} />
                     <ProtectedRoute  path="/dashboard"  component={Dashboard} />
                     <Login path="/login" />
+                    <Logout path="/logout" />
                     <Route path="*"  component={NotFound} />
 
                 </Switch>

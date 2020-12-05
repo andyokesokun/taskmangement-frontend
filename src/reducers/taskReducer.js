@@ -7,10 +7,11 @@ const initialState ={
 }
 
 export default (state=initialState, action) =>{
-    const previousState = [...state]
+    const previousState = {...state}
     switch(action.type){
-        
-        case  ADD:                          
+          
+        case  ADD: 
+            var id =action.payload.id;                             
             return {
                     ...previousState,
                     taskIds:[...previousState.taskIds,id],
@@ -21,24 +22,24 @@ export default (state=initialState, action) =>{
                 }
 
          case  REMOVE:
-           const id=action.id;                             
+                                        
            return {
                 ...previousState,
-                taskIds:[...previousState.taskIds, removeTaskId(id) ],
+                taskIds:[...previousState.taskIds, removeTaskId(action.id) ],
                 tasks:[
                     ...previousState,
-                    removeTask(id)
+                    removeTask(action.id)
                 ]
             }
 
          case  UPDATE: 
-            const {index, ...content} =action.payload;                      
+            const {index} =action.payload;                      
             return {
                     ...previousState,
-                    taskIds:[...previousState.taskIds,id],
+                    taskIds:[...previousState.taskIds,action.payload.id],
                     tasks:[
                         ...previousState,
-                        state.tasks[index]=content
+                        state.tasks[index]=action.payload
                     ]
                 }
         
