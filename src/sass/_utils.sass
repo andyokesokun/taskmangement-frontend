@@ -2,7 +2,6 @@
 .container
     display: flex
 
-
 .centered
     display: flex
     justify-content: center
@@ -14,7 +13,7 @@ li.nav-link
 .nav-link
     a
         text-decoration: none
-        color: #0b34a5
+        color: $primay-color
 
 .float-right
       float: $float-right
@@ -33,7 +32,70 @@ li.nav-link
 
 .d-flex
     display: flex
+    flex-direction: row
+    flex-wrap: wrap
 
 .margin-none
     margin: none
 
+.margin-top
+    margin-top: $margin
+
+.margin-bottom
+    margin-top: $margin;
+.d-none
+    display: none
+.margin
+    margin: $margin
+
+.form-holder
+    padding: 20px 5px     
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+.btn
+    background-color: $btn-primary
+    border: none 
+    color: white
+    padding: 1rem
+    border-radius: .4rem 
+
+.bg-gray
+     background-color: $gray
+
+.bg-blue
+    background-attachment: $btn-primary
+
+ 
+.bg-white
+     background-color: $white
+ 
+.bg-red
+     background-color: $accent-color
+
+  
+.color-white
+      color: $white
+ 
+.color-red     
+      color: $accent-color
+
+a.btn-link 
+      text-decoration: $text-decoration 
+      padding: $padding
+
+.pb
+    padding-bottom: 10px; 
+
+.back
+    background-color: red
+    width: fit-content   
+    
+.text-decoration
+       text-decoration: $text-decoration 
+
+.justify
+    justify-content: center
+    align-content: center

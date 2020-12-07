@@ -1,26 +1,26 @@
 import  './sass/_utils.sass'
-import {HashRouter, Route, Switch} from 'react-router-dom'
-import  Login  from './Components/Login' 
-import  Logout  from './Components/Logout' 
+import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
 import React from 'react'
-import  Dashboard from './Components/Dashboard'
-import  NotFound from './Components/NotFound'
-import  ProtectedRoute from './Components/ProtectedRoute'
+import MainLayout from './Components/MainLayout'
+import Login from './Components/Login'
+import Logout from './Components/Logout'
 
 
 const  App = ()=>{
     return (
-            <HashRouter>
+            <Router>   
                 <Switch>
-                    <ProtectedRoute exact path="/"  component={Dashboard} />
-                    <ProtectedRoute  path="/dashboard"  component={Dashboard} />
-                    <Login path="/login" />
-                    <Logout path="/logout" />
-                    <Route path="*"  component={NotFound} />
-
+                    <Redirect path="/home"  to="/" />      
+                    <Route  path="/login"  component={Login} />
+                    <Route path="/logout"  component={Logout} />
+                    <Route path="/">
+                        <MainLayout />        
+                    </Route>      
+                       
                 </Switch>
                 
-          </HashRouter>
+ 
+          </Router>
        )
 }
 

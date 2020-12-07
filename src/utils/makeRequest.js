@@ -5,12 +5,11 @@ const makeRequest = async ({baseUrl , path, method, data}) => {
 
     
     var headers =new Headers({ 'Content-Type': 'application/json' });
-    const token =localStorage.getItem("token")
+    const token =sessionStorage.getItem("token")
     if(token){ 
-        headers.append({'Authorization': `Bearer ${token}`  });
+        headers.append('Authorization', `Bearer ${token}`);
+      
     }
-
-    
     
      const requestContent = {
         method: method || 'GET', 
@@ -22,7 +21,8 @@ const makeRequest = async ({baseUrl , path, method, data}) => {
       }
  
     const request = new Request(goto,requestContent )
-    
+
+
     const response = await fetch(request);
     const result = await response.json();
 

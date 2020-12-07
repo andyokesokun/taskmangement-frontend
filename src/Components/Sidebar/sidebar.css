@@ -1,0 +1,2 @@
+.sidebar{width:20%;height:100vh;float:left;flex-direction:row;box-shadow:0.2rem 0.1rem 0.3rem rgba(0,0,0,0.2)}.sidebar .title{color:#818100d5;padding:0.4rem 0.4rem;margin-left:1rem;font-size:1.2rem;text-transform:uppercase;font-weight:bold}.sidebar .action{background-color:#0b34a5;color:white}.sidebar .nav-link{padding:1rem;box-shadow:0.1rem 0.1rem 0.1rem rgba(0,0,0,0.1)}.sidebar .login-icon{color:#005dc8}.sidebar .icon{margin-top:5rem}li.action a{color:white}
+/*# sourceMappingURL=sidebar.css.map */

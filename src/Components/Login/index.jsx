@@ -2,35 +2,43 @@ import  React, { useState } from "react";
 import './login.sass'
 import {Card, CardContent,TextField} from "@material-ui/core"
 import {Lock} from '@material-ui/icons'
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 import {useLogined} from '../../hooks'
 import authProvider  from  '../../auth/authProvider'
+import {connect} from "react-redux";
+import {setAuth} from '../../constants/actions'
 
 
- function Login() { 
+function Login({history, setAuth}) { 
     
-    const {isLogined, setIsLogined}=useLogined();
+    const {isLogined, setIsLogined} = useLogined()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [hasError, setHasError] = useState(false);
+    const [hasError, setHasError] = useState(false)
 
+    
 
-   const handleClick = async () => {
-       try{
-            await  authProvider.login({username, password} )
+    const handleClick = async () => {
+       
+       try{   
+            const result=await  authProvider.login({username, password} )   
+            console.log(result);
+            setAuth({...result,logined: true});
             setHasError(false)
-            setIsLogined(true);
+            setIsLogined(true)
 
        }catch(err){
              setHasError(true)
+             console.log(err)
        } 
        
    } 
 
-    return (isLogined ? 
-                (<Redirect to="/dashboard"/>) : 
+    return ( isLogined ?
+                <Redirect  to="/home" />
+                 :     
                 (<div className="login-holder">
-                <form className="fancy-form">            
+                <div className="fancy-form" >            
                 <Card>
                    
                     {hasError ?  
@@ -70,7 +78,7 @@ import authProvider  from  '../../auth/authProvider'
                         
                     </CardContent>
                 </Card>
-            </form>
+            </div>
                 <div className="login-side centered">
                     <h4>Do Task</h4>
                 </div>
@@ -80,4 +88,14 @@ import authProvider  from  '../../auth/authProvider'
 
 }
 
-export default Login
+const mapStateToProps = (state) =>({
+    isLogined: state ? state.auth.isLogined : ""
+});
+
+const mapActionToProps ={
+    setAuth  
+}
+
+export default  connect(mapStateToProps, mapActionToProps) (withRouter(Login))
+
+

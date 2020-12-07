@@ -10,11 +10,12 @@ const authMethods={
         try{      
             const result= await client({path:"Auth/login", method:'POST', data});
             if(result.status === "success"){
-                localStorage.setItem("token", result.token);
-                localStorage.setItem("access", result.access);
-                return Promise.resolve();
+                sessionStorage.setItem("token", result.token);
+                sessionStorage.setItem("to", "tets");
+                sessionStorage.setItem("access", result.access);
+                return Promise.resolve(result);
             }
-            console.log(result);
+        
             return Promise.reject(result);
 
         }catch(err){
@@ -26,21 +27,22 @@ const authMethods={
     },
     // called when the user clicks on the logout button
     logout: () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("access");
+        sessionStorage.removeItem("token");
+        sessionStorage.removeItem("access");
         return Promise.resolve();
     },
     // called when the API returns an error
     checkError: ({ status }) => {
         if (status === 401 || status === 403) {
-            localStorage.removeItem('username');
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('access');
             return Promise.reject();
         }
         return Promise.resolve();
     },
     // called when the user navigates to a new location, to check for authentication
     checkAuth: () => {
-        return localStorage.getItem('token')
+        return sessionStorage.getItem('token')
             ? true
             : false;
     },

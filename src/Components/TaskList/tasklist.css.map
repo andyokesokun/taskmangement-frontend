@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AACI,UADM,CACN,KAAK,AAAC,CACF,MAAM,CCFL,IAAI,CDEa",
+    "sources": [
+        "tasklist.sass",
+        "../../sass/variables.sass"
+    ],
+    "names": [],
+    "file": "tasklist.css"
+}

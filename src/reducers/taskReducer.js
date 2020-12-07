@@ -1,44 +1,55 @@
-import {ADD, REMOVE, UPDATE} from '../constants/actionTypes'
-import {removeTask, removeTaskId} from '../utils/selectors';
+import {ADDTASK, ERROR, FETCH, LOADING, REMOVETASK, UPDATETASK, AUTH, FETCHTASK} from '../constants/actionTypes'
+import {removeTask} from '../utils/selectors';
 
 const initialState ={
     tasks: [],
-    taskIds: []
+    hasErr:false,
+    hasData:false,
+    loading: false
+ 
 }
 
 export default (state=initialState, action) =>{
-    const previousState = {...state}
+   
     switch(action.type){
-          
-        case  ADD: 
-            var id =action.payload.id;                             
+       
+        case  LOADING: 
+             return {
+                ...state,
+                loading : true
+               }
+            break;
+        case  FETCHTASK: 
+        case  ADDTASK:                          
             return {
-                    ...previousState,
-                    taskIds:[...previousState.taskIds,id],
+                    ...state,
                     tasks:[
-                        ...previousState,
-                        state.tasks.push(action.payload)
-                    ]
+                        ...state.tasks,
+                        ...action.payload
+                    ],
+                    hasData : action.payload ? true : false
                 }
-
-         case  REMOVE:
-                                        
+        case ERROR:
+            return {
+                ...state,
+                hasErr : true
+               }
+            break;
+         case  REMOVETASK:                                   
            return {
-                ...previousState,
-                taskIds:[...previousState.taskIds, removeTaskId(action.id) ],
+                ...state,
                 tasks:[
-                    ...previousState,
+                    ...state.tasks,
                     removeTask(action.id)
                 ]
             }
 
-         case  UPDATE: 
+         case  UPDATETASK: 
             const {index} =action.payload;                      
             return {
-                    ...previousState,
-                    taskIds:[...previousState.taskIds,action.payload.id],
+                    ...state,
                     tasks:[
-                        ...previousState,
+                        ...state.tasks,
                         state.tasks[index]=action.payload
                     ]
                 }
