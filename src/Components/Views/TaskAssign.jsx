@@ -15,7 +15,7 @@ import User from "../User";
   const {index} = useParams();
   const task = useSelector((state) => getTaskById(state.task.tasks, taskId) )
  
-  const notAssignedUsers = useSelector((state) => getUserListNotAssigned(state, task.userResponses) );
+  const notAssignedUsers = useSelector((state) => getUserListNotAssigned(state, task.assignedUsers) );
   const {formValues, handleChange} =useForm({userName:"" });
 
   const {url} =useRouteMatch();

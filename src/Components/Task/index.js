@@ -12,10 +12,10 @@ const Task = ({task,index, location,history}) =>{
                     <p className="body">
                        {task.description}
                     </p>
-                    {task.userResponses.length === 0  ? 
+                    {task.assignedUsers.length === 0  ? 
                       <Link className="btn-link btn bg-gray" to={`/tasks/assign/${task.id}/${index}`} > Assign to User </Link>
                 
-                   : task.userResponses.map((user, index)=> <span key ={index}> {user.username} </span>)
+                   : task.taskStatus.status
                 }
                 </CardContent>
                 

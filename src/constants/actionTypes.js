@@ -7,3 +7,4 @@ export const LOADING ="Loading";
 export const FETCHTASK ="Fetch";
 export const AUTH ="Auth";
 export const ADDUSER ="AddUser";
+export const RELOGOIN ="Relogin"

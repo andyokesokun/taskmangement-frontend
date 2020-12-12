@@ -1,32 +1,30 @@
+import axios from 'axios'
 const makeRequest = async ({baseUrl , path, method, data}) => {
     baseUrl = baseUrl || 'https://localhost:44346/api'
     const goto = `${baseUrl}/${path}`;
-
-
     
-    var headers =new Headers({ 'Content-Type': 'application/json' });
+    axios.defaults.baseURL =baseUrl;
     const token =sessionStorage.getItem("token")
+
     if(token){ 
-        headers.append('Authorization', `Bearer ${token}`);
-      
-    }
-    
-     const requestContent = {
-        method: method || 'GET', 
-        headers:  headers
-      }
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
    
-      if(data){ 
-        requestContent.body= JSON.stringify(data); 
-      }
- 
-    const request = new Request(goto,requestContent )
+    }
 
 
-    const response = await fetch(request);
-    const result = await response.json();
+    try{
+      const response = await axios({
+          method: method || 'GET',
+          url: path,
+          data: data || ""
+        });
+      console.log(response);
+      return response.data;
+    }catch(err){
+        console.log('error',err.toJSON() );
+       
+    }
 
-    return result;
 
 }
 

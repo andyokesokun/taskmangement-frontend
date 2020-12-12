@@ -6,6 +6,7 @@ import {connect, useDispatch, useSelector,useStore} from 'react-redux'
 import {useParams,withRouter} from 'react-router-dom'
 import {getTaskById} from '../../utils/selectors'
 import NavBar from  '../NavBack'
+import UserGroup from  '../UserGroup'
 
 
 
@@ -23,7 +24,7 @@ const TaskDetails = ({tasks,history}) =>{
         e.preventDefault();
         if(window.confirm("Are you sure you want to delete")){
             dispatch(deleteTaskRequest(taskId));
-            window.location.href("/");
+            window.location.href="/";
         }
 
   } 
@@ -43,11 +44,12 @@ const TaskDetails = ({tasks,history}) =>{
                            <b> Description</b>
                            <p className="description-content"> {task.description}</p>
                         </div>
-                        {task.userResponses.length === 0  ? 
+                        {task.assignedUsers.length === 0  ? 
                         <span className="btn-link">
                             <Link to={`${url}/tasks/assign/${task.id}`} > Assign to User </Link>
                         </span>
-                        : task.userResponses.map((user, index)=> <span key ={index}> {user.username} </span>)
+                        :<UserGroup  users={task.assignedUsers} />
+                       
                         }
                     </CardContent>
                     

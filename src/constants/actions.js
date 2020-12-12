@@ -6,3 +6,4 @@ export const updateTask = (index,task) =>({type: UPDATETASK, payload:{index,...t
 export const setAuth = (data) =>({type: AUTH, payload: data });
 export const error = (data) =>({type: ERROR, payload: data });
 export const addUser = (data) =>({type: ADDUSER, payload: data });
+export const relogin = (value) =>({type: ADDUSER, payload:{relogin:value} });

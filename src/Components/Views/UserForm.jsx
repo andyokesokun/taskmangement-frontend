@@ -11,13 +11,12 @@ import {withRouter} from 'react-router-dom'
 function UserForm({formTitle, btnTitle}) {    
     const {formValues,handleChange, resetForm} = useForm({username:""} ) 
     const dispatch = useDispatch();
-    const defaultPassword ="password@123" 
+    const defaultPassword ="Password@123" 
     console.log(formValues)
     const handle = async () => {
         dispatch(addUserRequest(formValues))
         window.location.href="/users/manage"
-      
-
+    
    } 
 
 
@@ -40,7 +39,7 @@ function UserForm({formTitle, btnTitle}) {
                         </div>
                                     
                         </div>
-                           <p className="gray">Default Password: {defaultPassword}</p>
+                        <p className="gray">Default Password: {defaultPassword}</p>
                          
                             <button className="btn" onClick={handle} > {btnTitle}           
                            </button>

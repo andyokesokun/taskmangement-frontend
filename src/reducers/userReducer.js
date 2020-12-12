@@ -6,7 +6,7 @@ const initialState ={
     hasData: false
 }
 
-export default (state=initialState, action) =>{
+const userReducer =(state=initialState, action) =>{
    
     switch(action.type){
         
@@ -27,4 +27,6 @@ export default (state=initialState, action) =>{
 
     
 
-};
+}
+
+export default userReducer

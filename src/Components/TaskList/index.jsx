@@ -2,16 +2,11 @@ import  React, {useEffect} from "react";
 import './tasklist.sass'
 import  Task from '../Task'
 import {connect}  from "react-redux";
-import {fetchAllTasks,fetchUsers} from "../../utils/middleware"
+import {fetchAllTasks} from "../../utils/middleware"
 import { withRouter } from "react-router-dom";
 
-const TaskList = ({tasks,fetchTasks, fetchUsers}) =>{
+const TaskList = ({tasks}) =>{
 
-    useEffect (() =>{
-        fetchTasks();
-        fetchUsers();
-     
-    },[fetchTasks,fetchUsers]);
 
    return (
     <div className="task-list d-flex">
@@ -30,11 +25,11 @@ const mapStateToProps = (state) =>({
 
 
 
-const mapDispatchToProp = dispatch =>({
-       fetchTasks: ()=> dispatch(fetchAllTasks()),
-       fetchUsers: () =>dispatch(fetchUsers())
-})
+// const mapDispatchToProp = dispatch =>({
+//        fetchTasks: ()=> dispatch(fetchAllTasks()),
+//        //fetchUsers: () =>dispatch(fetchUsers())
+// })
 
 
-export default  connect(mapStateToProps, mapDispatchToProp)(withRouter(TaskList) )
+export default  connect(mapStateToProps)(withRouter(TaskList) )
 

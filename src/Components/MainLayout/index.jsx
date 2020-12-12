@@ -14,8 +14,8 @@ import {Card, CardHeader} from '@material-ui/core'
 import {useLogined} from '../../hooks'
 
 const MainLayout =({location})=>{
-    const {isLogined} = useLogined();
-    
+  const {isLogined} = useLogined();
+
 
   return (
     !isLogined ?  (<Redirect  to ="/login" />)
