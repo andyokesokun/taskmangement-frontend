@@ -1,4 +1,4 @@
-import {ADDTASK, ERROR, FETCH, LOADING, REMOVETASK, UPDATETASK, AUTH, FETCHTASK} from '../constants/actionTypes'
+import {ADDTASK, ERROR, LOADING, REMOVETASK, UPDATETASK, FETCHTASK} from '../constants/actionTypes'
 import {removeTask} from '../utils/selectors';
 
 const initialState ={
@@ -45,7 +45,9 @@ export default (state=initialState, action) =>{
             }
 
          case  UPDATETASK: 
-            const {index} =action.payload;                      
+            const {index} =action.payload;
+    
+            
             return {
                     ...state,
                     tasks:[

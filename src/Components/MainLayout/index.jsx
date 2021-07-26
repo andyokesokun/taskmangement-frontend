@@ -36,7 +36,7 @@ const MainLayout =({location})=>{
                         }    
                           <div className="margin-top margin-bottom">
                            <Switch>
-                              <ProtectedRoute exact path="/" isLogined={true} component={TaskList} />                     
+                               <ProtectedRoute exact path="/" isLogined={true} component={TaskList} />                     
                                 <Route  path="/tasks/create" >
                                     <TaskForm  formTitle="Post Task"  btnTitle="ADD"  />
                                 </Route>

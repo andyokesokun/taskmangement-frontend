@@ -12,7 +12,7 @@ export default (state=initialState, action) =>{
    
     switch(action.type){
         
-        case AUTH: 
+       case AUTH: 
               const{access,logined}= action.payload;
               return{
                  ...state,

@@ -1,7 +1,6 @@
 import axios from 'axios'
 const makeRequest = async ({baseUrl , path, method, data}) => {
     baseUrl = baseUrl || 'https://localhost:44346/api'
-    const goto = `${baseUrl}/${path}`;
     
     axios.defaults.baseURL =baseUrl;
     const token =sessionStorage.getItem("token")
@@ -10,7 +9,6 @@ const makeRequest = async ({baseUrl , path, method, data}) => {
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
    
     }
-
 
     try{
       const response = await axios({

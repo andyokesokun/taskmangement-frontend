@@ -3,7 +3,7 @@ export const removeTask =(state,taskId)=>{
 }
 
 export const getTaskById =(tasks,taskId)=>{
-     let data=tasks.find( (item) => item.id == taskId )
+     let data=tasks.find( (item) => item.id === taskId )
     return data
 };
 
